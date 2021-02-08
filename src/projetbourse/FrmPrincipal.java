@@ -290,7 +290,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
 
- numAction = Integer.parseInt(tblTraders.getValueAt(tblActions.getSelectedRow(), 0).toString());
+ numAction = Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(), 0).toString());
+  numTrader = Integer.parseInt(tblTraders.getValueAt(tblTraders.getSelectedRow(), 0).toString());
  double gain = 0;
 
  
