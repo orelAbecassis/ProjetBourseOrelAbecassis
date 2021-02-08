@@ -27,7 +27,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     ArrayList<Trader> mesTraders = new ArrayList<>();
     int numTrader;
     int numAction;
-    double gain = 0;
+ 
     public FrmPrincipal() {
         initComponents();
     }
@@ -276,7 +276,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 v.add(a.getPrixAchat());
                 v.add(a.getQuantite());
                 dtmActions.addRow(v);
-                
+            
                 cumul = (a.getCoursReel()*a.getQuantite())-(a.getPrixAchat()*a.getQuantite())+cumul;
             }
         }
@@ -291,25 +291,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
 
  numAction = Integer.parseInt(tblTraders.getValueAt(tblActions.getSelectedRow(), 0).toString());
- 
- 
+ double gain = 0;
+
  
  for(Trader t : mesTraders)
  {
      for(Action a : t.getMesTraders())
      {
+       
+         gain = (a.getCoursReel()*a.getQuantite())-(a.getPrixAchat()*a.getQuantite());
+        
          if(a.getIdActeur() == (numAction))
          {
-           
-                gain = (a.getPrixAchat() * a.getQuantite()) - (a.getCoursReel()*a.getQuantite());
-             
-             if(a.getPrixAchat()> a.getCoursReel())
+                          
+             if(a.getPrixAchat() < a.getCoursReel())
              {
-                 lblMessage.setText("Vous gagnez de l'argent sur cette action : " +String.valueOf(gain));
+               lblMessage.setText("Vous gagnez de l'argent sur cette action : " +String.valueOf(gain));
+
              }
              else
              {
-                lblMessage.setText("Vous perdez de l'argent sur cette action : " +String.valueOf(gain));
+               lblMessage.setText("Vous perdez de l'argent sur cette action : " +String.valueOf(gain));
              }
          }
      }
@@ -324,29 +326,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblActionsMouseClicked
 
     private void btnVendreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendreMouseClicked
-        
-      for(Trader t : mesTraders)
-      {
-          for(Action a : t.getMesTraders())
-          {
+      
+        int nbAction;
+        nbAction = Integer.parseInt(tblActions.getValueAt(tblActions.getSelectedRow(), 0).toString());   
+    
+    for(Trader t : mesTraders)
+     {
+        for(Action a : t.getMesTraders())
+        {    
+           
+            
             if(txtQuantiteVendue.getText().compareTo("") ==0)
                 {
                     JOptionPane.showMessageDialog(this,"Veuillez saisir une action");
                 }
-             else if()
-                {
-                   JOptionPane.showMessageDialog(this,"Veuillez saisir une quantité");
+            else if(nbAction == 0)
+            {
+               JOptionPane.showMessageDialog(this,"Veuillez saisir une quantité");
 
-                }
-                else if()
-                {
-                  JOptionPane.showMessageDialog(this,"Vous ne pouvez pas vendre plus que ce que vous possédez ");
+            }
+          
+        else
+            {
+                
+            }
 
-                }
-
-          }
-      }
-   
+        }
+     }
         
         
         
