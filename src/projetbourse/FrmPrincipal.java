@@ -10,6 +10,7 @@ import ClassesMetier.Trader;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.stream.Stream;
+import javax.sound.midi.Track;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +27,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     ArrayList<Trader> mesTraders = new ArrayList<>();
     int numTrader;
     int numAction;
+    double gain = 0;
     public FrmPrincipal() {
         initComponents();
     }
@@ -298,7 +300,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      {
          if(a.getIdActeur() == (numAction))
          {
-             double gain = 0;
+           
                 gain = (a.getPrixAchat() * a.getQuantite()) - (a.getCoursReel()*a.getQuantite());
              
              if(a.getPrixAchat()> a.getCoursReel())
@@ -323,16 +325,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnVendreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendreMouseClicked
         
-      
-        if(txtQuantiteVendue.getText().compareTo("") ==0)
-        {
-            JOptionPane.showMessageDialog(this,"Veuillez saisir une quantité");
-        }
-        else if(txtQuantiteVendue.getText()< lblPortefeuille.getText())
-        {
-            
-        }
-       
+      for(Trader t : mesTraders)
+      {
+          for(Action a : t.getMesTraders())
+          {
+            if(txtQuantiteVendue.getText().compareTo("") ==0)
+                {
+                    JOptionPane.showMessageDialog(this,"Veuillez saisir une action");
+                }
+             else if()
+                {
+                   JOptionPane.showMessageDialog(this,"Veuillez saisir une quantité");
+
+                }
+                else if()
+                {
+                  JOptionPane.showMessageDialog(this,"Vous ne pouvez pas vendre plus que ce que vous possédez ");
+
+                }
+
+          }
+      }
+   
         
         
         
